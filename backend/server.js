@@ -1,21 +1,31 @@
-// const express=require("express")
-// const app=express()
-// const dotenv=require("dotenv").config()
-// const connectDb=require("./config/connectionDb")
-// const cors=require("cors")
 
-// const PORT=process.env.PORT || 3000
+
+
+// const express = require("express")
+// const app = express()
+// require("dotenv").config()
+// const connectDb = require("./config/connectionDb")
+// const cors = require("cors")
+
+// const PORT = process.env.PORT || 5000
+
 // connectDb()
 
 // app.use(express.json())
-// app.use(cors())
+
+// app.use(cors({
+//   origin: "http://localhost:5173",
+//   credentials: true
+// }))
+
 // app.use(express.static("public"))
 
-// app.use("/",require("./routes/user"))
-// app.use("/recipe",require("./routes/recipe"))
+// // FIXED ROUTES
+// app.use("/user", require("./routes/user"))
+// app.use("/recipe", require("./routes/recipe"))
 
-// app.listen(PORT,(err)=>{
-//     console.log(`app is listening on port ${PORT}`)
+// app.listen(PORT, () => {
+//   console.log(`app is listening on port ${PORT}`)
 // })
 
 
@@ -24,48 +34,41 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const express = require("express")
-const app = express()
-require("dotenv").config()
-const connectDb = require("./config/connectionDb")
 const cors = require("cors")
+const dotenv = require("dotenv")
+dotenv.config()
 
-const PORT = process.env.PORT || 5000
+const connectDb = require("./config/db")
 
+const app = express()
+
+// CONNECT DB
 connectDb()
 
-app.use(express.json())
-
+// MIDDLEWARES
 app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true
+ origin: "*",
+ methods: ["GET","POST","PUT","DELETE"],
+ credentials: true
 }))
 
-app.use(express.static("public"))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-// FIXED ROUTES
-app.use("/user", require("./routes/user"))
-app.use("/recipe", require("./routes/recipe"))
+// ROUTES
+app.use("/api/users", require("./routes/user"))
+app.use("/api/items", require("./routes/item"))
+app.use("/api/shops", require("./routes/shop"))
 
-app.listen(PORT, () => {
-  console.log(`app is listening on port ${PORT}`)
+// TEST ROUTE
+app.get("/", (req,res)=>{
+ res.send("Backend running successfully 🚀")
+})
+
+// PORT (RENDER)
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, ()=>{
+ console.log("Server running on", PORT)
 })
