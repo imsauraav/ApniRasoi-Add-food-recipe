@@ -96,7 +96,7 @@ import AddFoodRecipe from './pages/AddFoodRecipe'
 import EditRecipe from './pages/EditRecipe'
 import RecipeDetails from './pages/RecipeDetails'
 
-const BASE = "http://localhost:5000"
+const BASE = "https://apnirasoi-add-food-recipe.onrender.com"
 
 // ================= ALL RECIPES =================
 const getAllRecipes = async () => {
