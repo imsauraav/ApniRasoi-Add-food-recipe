@@ -39,7 +39,7 @@ const cors = require("cors")
 const dotenv = require("dotenv")
 dotenv.config()
 
-const connectDb = require("./config/db")
+const connectDb = require("./config/connectionDb")
 
 const app = express()
 
