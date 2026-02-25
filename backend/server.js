@@ -13,11 +13,11 @@ connectDb()
 
 app.use(express.json())
 
-// app.use(cors({
-//   origin: "https://apnirasoi-add-food-recipe.onrender.com",
-//   credentials: true
-// }))
-app.use(cors())
+app.use(cors({
+  origin: "https://apnirasoi-add-food-recipe.onrender.com",
+  credentials: true
+}))
+
 app.use(express.static("public"))
 
 // FIXED ROUTES
