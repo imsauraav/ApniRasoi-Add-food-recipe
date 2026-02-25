@@ -112,9 +112,9 @@ export default function RecipeDetails() {
         className="recipe-main-img"
         src={
           recipe.coverImage
-            ? `http://localhost:5000/images/${recipe.coverImage}`
+            ? `https://apnirasoi-add-food-recipe.onrender.com/images/${recipe.coverImage}`
             : recipe.image
-            ? `http://localhost:5000/${recipe.image}`
+            ? `https://apnirasoi-add-food-recipe.onrender.com/${recipe.image}`
             : profileImg
         }
         alt=""
